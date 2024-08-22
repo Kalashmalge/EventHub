@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcement</title>
+    <link rel="stylesheet" href="announcement.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bonheur+Royale&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap">
+</head>
+<body>
+<span class="material-symbols-outlined" id="home">home</span>
+<h1>Announcement</h1>
+<form  action="announcement"   method="POST">
+
+<!--  <label for="EventName">Event Name:</label>&ndash;&gt;-->
+<!-- <input type="text" id="EventName" name="eventName" required><br>&ndash;&gt;-->
+    <h2>Events Dropdown</h2>
+    <label for="eventsDropdown"></label><select id="eventsDropdown">
+        <!-- Options will be dynamically populated by JavaScript -->
+
+    <!-- Add your JavaScript to populate the dropdown -->
+
+
+<!--    <script>-->
+<!--        // JavaScript code to populate the dropdown will go here-->
+<!--        // Fetch events from the server-->
+<!--        fetch('announcement')-->
+<!--            .then(response => response.json())-->
+<!--            .then(data => {-->
+<!--                const eventsDropdown = document.getElementById('eventsDropdown');-->
+
+<!--                // Loop through the events data and create options for the dropdown-->
+<!--                data.forEach(eventName => {-->
+<!--                    const option = document.createElement('option');-->
+<!--                    option.text = eventName;-->
+<!--                    eventsDropdown.appendChild(option);-->
+<!--                });-->
+<!--            })-->
+<!--            .catch(error => console.error('Error fetching events:', error));-->
+<!--    </script>-->
+    <script>
+        // fetch('getEventsServlet')
+        fetch('AnnouncementServlet')
+            .then(response => response.json())
+            .then(data => {
+                const eventsDropdown = document.getElementById('eventsDropdown');
+
+                // Loop through the events data and create options for the dropdown
+                data.forEach(eventName => {
+                    const option = document.createElement('option');
+                    option.text = eventName;
+                    eventsDropdown.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching events:', error));
+
+    </script>
+
+</select>
+
+
+
+    <label for="announcementMessage">Type your announcement:</label><br>
+    <textarea id="announcementMessage" name="announcementMessage" rows="4" cols="50" required></textarea><br>
+
+    <button type="submit">Post Announcement</button>
+    <script>
+        document.getElementById("home").addEventListener("click",function (){
+            window.location.href = "UpcomingEvents.html";
+        });
+    </script>
+</form>
+</body>
+</html>
